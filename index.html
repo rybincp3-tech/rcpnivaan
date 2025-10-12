@@ -65,7 +65,7 @@
 </head>
 <body>
     <div class="invitation">
-        <audio id="bg-music" src="https://cdn.pixabay.com/audio/2022/10/16/audio_12b6b9b6b2.mp3" autoplay loop muted></audio>
+    <audio id="bg-music" src="https://cdn.pixabay.com/audio/2023/03/13/audio_126bfae7c7.mp3" autoplay loop muted></audio>
         <div class="cake">🎂</div>
         <h1>You're Invited!</h1>
         <h2>To a Birthday Party!</h2>
@@ -78,25 +78,36 @@
             We can't wait to celebrate with you!<br>
             Please join us for a fun-filled evening.
         </div>
-        <button class="music-btn" onclick="toggleMusic()">Play/Pause Music</button>
+        <button id="music-btn" class="music-btn" onclick="toggleMusic()">Play Music</button>
     </div>
     <script>
         function toggleMusic() {
             var audio = document.getElementById('bg-music');
+            var btn = document.getElementById('music-btn');
             if (audio.paused) {
                 audio.muted = false;
                 audio.play();
+                btn.textContent = 'Pause Music';
             } else {
                 audio.pause();
+                btn.textContent = 'Play Music';
             }
         }
-        // Unmute and play on user interaction (for browsers that block autoplay)
+        // Unmute and play on first user interaction (for browsers that block autoplay)
         document.addEventListener('DOMContentLoaded', function() {
             var audio = document.getElementById('bg-music');
-            document.body.addEventListener('click', function() {
+            var btn = document.getElementById('music-btn');
+            function playMusicOnce() {
                 audio.muted = false;
                 audio.play();
-            }, { once: true });
+                btn.textContent = 'Pause Music';
+                document.body.removeEventListener('click', playMusicOnce);
+            }
+            document.body.addEventListener('click', playMusicOnce);
+            btn.addEventListener('click', function(e) {
+                // Prevent double play on button click
+                e.stopPropagation();
+            });
         });
     </script>
 </body>
