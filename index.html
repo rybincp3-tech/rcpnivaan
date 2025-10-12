@@ -98,6 +98,7 @@
 </head>
 <body>
   <div class="container">
+    <audio id="bg-music" src="https://raw.githubusercontent.com/rybincp3-tech/rcpnivaan/main/nippu%20(2).mp3" autoplay loop muted></audio>
     <!-- Balloons Decorations -->
     <svg class="balloons" viewBox="0 0 64 120">
       <ellipse cx="32" cy="36" rx="28" ry="34" fill="#ff6f61" />
@@ -130,9 +131,16 @@
       Kindly RSVP to [your contact info here]
     </div>
   </div>
-  <script>
-      
-        <audio id="bg-music" src="https://raw.githubusercontent.com/rybincp3-tech/rcpnivaan/main/nippu%20(2).mp3" autoplay loop muted></audio>
+  <script
+    // Unmute and play on first user interaction (for browsers that block autoplay)
+        document.addEventListener('DOMContentLoaded', function() {
+            var audio = document.getElementById('bg-music');
+            function playMusicOnce() {
+                audio.muted = false;
+                audio.play();
+                document.body.removeEventListener('click', playMusicOnce);
+            }
+            document.body.addEventListener('click', playMusicOnce);
     // Countdown Timer
     const eventDate = new Date('2025-10-23T19:00:00');
     function updateCountdown() {
@@ -157,4 +165,5 @@
   </script>
 </body>
 </html>
+
 
