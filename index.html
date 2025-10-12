@@ -1,123 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Birthday Invitation</title>
-    <style>
-        body {
-            background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .invitation {
-            background: rgba(255,255,255,0.95);
-            border-radius: 20px;
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
-            padding: 40px 30px;
-            max-width: 400px;
-            text-align: center;
-        }
-        .invitation h1 {
-            color: #fda085;
-            margin-bottom: 10px;
-            font-size: 2.2em;
-        }
-        .invitation h2 {
-            color: #222;
-            margin-bottom: 20px;
-            font-size: 1.3em;
-        }
-        .details {
-            margin: 25px 0;
-            font-size: 1.1em;
-            color: #444;
-        }
-        .details span {
-            display: block;
-            margin-bottom: 8px;
-        }
-        .cake {
-            font-size: 2.5em;
-            margin-bottom: 15px;
-        }
-        .rsvp {
-            margin-top: 30px;
-            color: #888;
-            font-size: 0.95em;
-        }
-        .music-btn {
-            margin-top: 20px;
-            padding: 8px 18px;
-            border: none;
-            border-radius: 8px;
-            background: #fda085;
-            color: #fff;
-            font-size: 1em;
-            cursor: pointer;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Nivaan's 2nd Birthday Invitation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background: linear-gradient(135deg, #fbeee6 0%, #aee2ff 100%);
+      font-family: 'Segoe UI', 'Comic Sans MS', cursive, sans-serif;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      min-height: 100vh;
+    }
+    .container {
+      background: #ffffffcc;
+      max-width: 500px;
+      margin: 40px auto;
+      padding: 2em;
+      border-radius: 24px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+      position: relative;
+    }
+    h1 {
+      color: #ff6f61;
+      margin-bottom: 0.5em;
+      font-size: 2.2em;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+    }
+    h2 {
+      color: #009688;
+      margin-top: 0;
+      font-size: 1.6em;
+    }
+    .details {
+      font-size: 1.1em;
+      margin: 1.7em 0 1.2em 0;
+      line-height: 2em;
+    }
+    .location {
+      font-weight: bold;
+      color: #ffb300;
+    }
+    .footer {
+      font-size: 0.95em;
+      color: #888;
+      margin-top: 2em;
+    }
+    .balloons {
+      position: absolute;
+      left: 10px;
+      top: -60px;
+      width: 80px;
+      z-index: 2;
+      animation: float 3s infinite ease-in-out alternate;
+    }
+    .balloons-right {
+      left: unset;
+      right: 10px;
+      top: -65px;
+      width: 80px;
+      animation: float 4s infinite ease-in-out alternate;
+    }
+    @keyframes float {
+      0% { transform: translateY(0);}
+      100% { transform: translateY(15px);}
+    }
+    .countdown-title {
+      color: #e65100;
+      font-weight: bold;
+      font-size: 1.4em;
+      margin-top: 1em;
+    }
+    .countdown {
+      font-size: 1.5em;
+      color: #43a047;
+      margin-bottom: 1em;
+      margin-top: 0.4em;
+      letter-spacing: 2px;
+      font-family: monospace;
+    }
+    @media (max-width: 600px) {
+      .container {
+        margin: 10px;
+        padding: 1em;
+      }
+      .balloons, .balloons-right {
+        width: 55px;
+        top: -35px;
+      }
+      h1 { font-size: 1.5em;}
+      h2 { font-size: 1.1em;}
+      .countdown { font-size: 1.1em;}
+    }
+  </style>
 </head>
 <body>
-    <div class="invitation">
+  <div class="container">
+    <!-- Balloons Decorations -->
+    <svg class="balloons" viewBox="0 0 64 120">
+      <ellipse cx="32" cy="36" rx="28" ry="34" fill="#ff6f61" />
+      <ellipse cx="22" cy="52" rx="10" ry="14" fill="#ffd54f" />
+      <ellipse cx="44" cy="54" rx="8" ry="12" fill="#ffb300" />
+      <line x1="32" y1="70" x2="32" y2="110" stroke="#888" stroke-width="2"/>
+    </svg>
+    <svg class="balloons balloons-right" viewBox="0 0 64 120">
+      <ellipse cx="32" cy="36" rx="28" ry="34" fill="#81d4fa" />
+      <ellipse cx="22" cy="52" rx="10" ry="14" fill="#aed581" />
+      <ellipse cx="44" cy="54" rx="8" ry="12" fill="#ffb300" />
+      <line x1="32" y1="70" x2="32" y2="110" stroke="#888" stroke-width="2"/>
+    </svg>
+    <!-- End Balloons -->
+    <h1>🎈 You're Invited! 🎈</h1>
+    <h2>Nivaan's 2nd Birthday</h2>
+    <div class="countdown-title">Countdown to the Big Day!</div>
+    <div id="countdown" class="countdown"></div>
+    <div class="details">
+      <div>Date: <strong>23 October 2025</strong></div>
+      <div>Time: <strong>7:00 PM</strong></div>
+      <div>Location: <span class="location">@ Sopanam</span></div>
+    </div>
+    <p>
+      Join us for a fun-filled kids' party as we celebrate<br>
+      <b>Nivaan turning 2!</b><br>
+      Games, laughter, and sweets await – we hope to see you there!
+    </p>
+    <div class="footer">
+      Kindly RSVP to [your contact info here]
+    </div>
+  </div>
+  <script>
+      
         <audio id="bg-music" src="https://raw.githubusercontent.com/rybincp3-tech/rcpnivaan/main/nippu%20(2).mp3" autoplay loop muted></audio>
-        <div class="balloons">
-            <div class="balloon" style="left:10%; background:#ffb347;"></div>
-            <div class="balloon" style="left:30%; background:#ff6961;"></div>
-            <div class="balloon" style="left:50%; background:#77dd77;"></div>
-            <div class="balloon" style="left:70%; background:#aec6cf;"></div>
-            <div class="balloon" style="left:85%; background:#f49ac2;"></div>
-        </div>
-        <div class="cake">🎂</div>
-        <h1>You're Invited!</h1>
-        <h2>To Nivaan's Birthday Party</h2>
-        <div class="details">
-            <span><strong>Date:</strong> 23/10/2023</span>
-            <span><strong>Time:</strong> 7:00 PM</span>
-            <span><strong>Location:</strong> @ Sopanam</span>
-        </div>
-        <div id="countdown" class="countdown"></div>
-        <div class="rsvp">
-            We can't wait to celebrate with you!<br>
-            Please join us for a fun-filled evening.
-       
-    <script>
-        // Unmute and play on first user interaction (for browsers that block autoplay)
-        document.addEventListener('DOMContentLoaded', function() {
-            var audio = document.getElementById('bg-music');
-            function playMusicOnce() {
-                audio.muted = false;
-                audio.play();
-                document.body.removeEventListener('click', playMusicOnce);
-            }
-            document.body.addEventListener('click', playMusicOnce);
-
-            // Countdown timer
-            function updateCountdown() {
-                // Set the date for 23rd October 2023, 7:00 PM
-                var eventDate = new Date('2023-10-23T19:00:00');
-                var now = new Date();
-                var diff = eventDate - now;
-                var cd = document.getElementById('countdown');
-                if (diff > 0) {
-                    var days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                    var hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-                    var mins = Math.floor((diff / (1000 * 60)) % 60);
-                    var secs = Math.floor((diff / 1000) % 60);
-                    cd.textContent = `Countdown: ${days}d ${hours}h ${mins}m ${secs}s`;
-                } else {
-                    cd.textContent = "It's party time! 🎉";
-                }
-            }
-            updateCountdown();
-            setInterval(updateCountdown, 1000);
-        });
-    </script>
+    // Countdown Timer
+    const eventDate = new Date('2025-10-23T19:00:00');
+    function updateCountdown() {
+      const now = new Date();
+      const diff = eventDate - now;
+      if (diff <= 0) {
+        document.getElementById('countdown').innerHTML = "It's party time!";
+        return;
+      }
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const mins = Math.floor((diff / (1000 * 60)) % 60);
+      const secs = Math.floor((diff / 1000) % 60);
+      document.getElementById('countdown').innerHTML =
+        days + "d " +
+        String(hours).padStart(2, '0') + "h " +
+        String(mins).padStart(2, '0') + "m " +
+        String(secs).padStart(2, '0') + "s";
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
 </body>
 </html>
-
