@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nivaan's Birthday Invitation</title>
+    <title>Birthday Invitation</title>
     <style>
         body {
-            background: linear-gradient(135deg, #f8ffae 0%, #43c6ac 100%);
+            background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
@@ -24,7 +24,7 @@
             text-align: center;
         }
         .invitation h1 {
-            color: #43c6ac;
+            color: #fda085;
             margin-bottom: 10px;
             font-size: 2.2em;
         }
@@ -51,6 +51,16 @@
             color: #888;
             font-size: 0.95em;
         }
+        .music-btn {
+            margin-top: 20px;
+            padding: 8px 18px;
+            border: none;
+            border-radius: 8px;
+            background: #fda085;
+            color: #fff;
+            font-size: 1em;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -58,39 +68,36 @@
         <audio id="bg-music" src="https://cdn.pixabay.com/audio/2022/10/16/audio_12b6b9b6b2.mp3" autoplay loop muted></audio>
         <div class="cake">🎂</div>
         <h1>You're Invited!</h1>
-        <h2>To Nivaan's Birthday Party</h2>
+        <h2>To a Birthday Party!</h2>
         <div class="details">
-            <span><strong>Date:</strong> October 23rd</span>
-            <span><strong>Time:</strong> 7:00 PM</span>
-            <span><strong>Location:</strong> Sopanam</span>
+            <span><strong>Date:</strong> [Your Date Here]</span>
+            <span><strong>Time:</strong> [Your Time Here]</span>
+            <span><strong>Location:</strong> [Your Location Here]</span>
         </div>
         <div class="rsvp">
             We can't wait to celebrate with you!<br>
             Please join us for a fun-filled evening.
         </div>
-        <div style="margin-top:20px;">
-            <button onclick="toggleMusic()" style="padding:8px 18px;border:none;border-radius:8px;background:#43c6ac;color:#fff;font-size:1em;cursor:pointer;">Play/Pause Music</button>
-        </div>
-</head>
-<script>
-    function toggleMusic() {
-        var audio = document.getElementById('bg-music');
-        if (audio.paused) {
-            audio.muted = false;
-            audio.play();
-        } else {
-            audio.pause();
-        }
-    }
-    // Unmute and play on user interaction (for browsers that block autoplay)
-    document.addEventListener('DOMContentLoaded', function() {
-        var audio = document.getElementById('bg-music');
-        document.body.addEventListener('click', function() {
-            audio.muted = false;
-            audio.play();
-        }, { once: true });
-    });
-</script>
+        <button class="music-btn" onclick="toggleMusic()">Play/Pause Music</button>
     </div>
+    <script>
+        function toggleMusic() {
+            var audio = document.getElementById('bg-music');
+            if (audio.paused) {
+                audio.muted = false;
+                audio.play();
+            } else {
+                audio.pause();
+            }
+        }
+        // Unmute and play on user interaction (for browsers that block autoplay)
+        document.addEventListener('DOMContentLoaded', function() {
+            var audio = document.getElementById('bg-music');
+            document.body.addEventListener('click', function() {
+                audio.muted = false;
+                audio.play();
+            }, { once: true });
+        });
+    </script>
 </body>
 </html>
