@@ -65,49 +65,102 @@
 </head>
 <body>
     <div class="invitation">
-    <audio id="bg-music" src="https://raw.githubusercontent.com/rybincp3-tech/rcpnivaan/main/nippu%20(2).mp3" autoplay loop muted></audio>
+        <audio id="bg-music" src="https://raw.githubusercontent.com/rybincp3-tech/rcpnivaan/main/nippu%20(2).mp3" autoplay loop muted></audio>
+        <div class="balloons">
+            <div class="balloon" style="left:10%; background:#ffb347;"></div>
+            <div class="balloon" style="left:30%; background:#ff6961;"></div>
+            <div class="balloon" style="left:50%; background:#77dd77;"></div>
+            <div class="balloon" style="left:70%; background:#aec6cf;"></div>
+            <div class="balloon" style="left:85%; background:#f49ac2;"></div>
+        </div>
         <div class="cake">🎂</div>
         <h1>You're Invited!</h1>
-        <h2>To a Birthday Party!</h2>
+        <h2>To Nivaan's Birthday Party</h2>
         <div class="details">
-            <span><strong>Date:</strong> [Your Date Here]</span>
-            <span><strong>Time:</strong> [Your Time Here]</span>
-            <span><strong>Location:</strong> [Your Location Here]</span>
+            <span><strong>Date:</strong> 23/10/2023</span>
+            <span><strong>Time:</strong> 7:00 PM</span>
+            <span><strong>Location:</strong> @ Sopanam</span>
         </div>
+        <div id="countdown" class="countdown"></div>
         <div class="rsvp">
             We can't wait to celebrate with you!<br>
             Please join us for a fun-filled evening.
         </div>
-        <button id="music-btn" class="music-btn" onclick="toggleMusic()">Play Music</button>
+        .balloons {
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .balloon {
+            position: absolute;
+            bottom: -120px;
+            width: 40px;
+            height: 55px;
+            border-radius: 20px 20px 20px 20px / 30px 30px 30px 30px;
+            opacity: 0.8;
+            animation: float 7s infinite ease-in;
+        }
+        .balloon:nth-child(2) { animation-delay: 1s; }
+        .balloon:nth-child(3) { animation-delay: 2s; }
+        .balloon:nth-child(4) { animation-delay: 3s; }
+        .balloon:nth-child(5) { animation-delay: 4s; }
+        @keyframes float {
+            0% { transform: translateY(0) scale(1); opacity: 0.8; }
+            10% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { transform: translateY(-110vh) scale(1.1); opacity: 0; }
+        }
+        .countdown {
+            margin: 20px 0 0 0;
+            font-size: 1.2em;
+            color: #fda085;
+            font-weight: bold;
+            letter-spacing: 1px;
+            background: rgba(255,255,255,0.7);
+            border-radius: 10px;
+            display: inline-block;
+            padding: 8px 18px;
+            box-shadow: 0 2px 8px rgba(31,38,135,0.08);
+        }
+        .invitation {
+            position: relative;
+            z-index: 1;
+        }
     </div>
     <script>
-        function toggleMusic() {
-            var audio = document.getElementById('bg-music');
-            var btn = document.getElementById('music-btn');
-            if (audio.paused) {
-                audio.muted = false;
-                audio.play();
-                btn.textContent = 'Pause Music';
-            } else {
-                audio.pause();
-                btn.textContent = 'Play Music';
-            }
-        }
         // Unmute and play on first user interaction (for browsers that block autoplay)
         document.addEventListener('DOMContentLoaded', function() {
             var audio = document.getElementById('bg-music');
-            var btn = document.getElementById('music-btn');
             function playMusicOnce() {
                 audio.muted = false;
                 audio.play();
-                btn.textContent = 'Pause Music';
                 document.body.removeEventListener('click', playMusicOnce);
             }
             document.body.addEventListener('click', playMusicOnce);
-            btn.addEventListener('click', function(e) {
-                // Prevent double play on button click
-                e.stopPropagation();
-            });
+
+            // Countdown timer
+            function updateCountdown() {
+                // Set the date for 23rd October 2023, 7:00 PM
+                var eventDate = new Date('2023-10-23T19:00:00');
+                var now = new Date();
+                var diff = eventDate - now;
+                var cd = document.getElementById('countdown');
+                if (diff > 0) {
+                    var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                    var hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                    var mins = Math.floor((diff / (1000 * 60)) % 60);
+                    var secs = Math.floor((diff / 1000) % 60);
+                    cd.textContent = `Countdown: ${days}d ${hours}h ${mins}m ${secs}s`;
+                } else {
+                    cd.textContent = "It's party time! 🎉";
+                }
+            }
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
         });
     </script>
 </body>
